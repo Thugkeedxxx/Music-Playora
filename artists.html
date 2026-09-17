@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08080c">
+<title>PLAYORA — Artists</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --bg:#08080c;
+  --panel:#111118;
+  --panel2:#171720;
+  --text:#fff;
+  --muted:#90909e;
+  --line:rgba(255,255,255,.08);
+  --purple:#a855f7;
+  --pink:#ec4899;
+  --blue:#6366f1;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Inter,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 85% 5%,rgba(168,85,247,.15),transparent 25%),
+    radial-gradient(circle at 10% 45%,rgba(236,72,153,.08),transparent 25%),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  padding-bottom:85px;
+  overflow-x:hidden;
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+/* BACKGROUND */
+
+.orb{
+  position:fixed;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  filter:blur(100px);
+  opacity:.1;
+  pointer-events:none;
+  z-index:-1;
+  animation:float 10s ease-in-out infinite;
+}
+
+.orb.one{
+  background:#a855f7;
+  top:12%;
+  right:-120px;
+}
+
+.orb.two{
+  background:#ec4899;
+  bottom:12%;
+  left:-130px;
+  animation-delay:-4s;
+}
+
+@keyframes float{
+  0%,100%{
+    transform:translateY(0) scale(1);
+  }
+  50%{
+    transform:translateY(-35px) scale(1.1);
+  }
+}
+
+/* HEADER */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:72px;
+  padding:0 5%;
+  display:flex;
+  align-items:center;
+  gap:25px;
+  background:rgba(8,8,12,.8);
+  backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--line);
+}
+
+.logo{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:-1.5px;
+}
+
+.logo span{
+  background:linear-gradient(90deg,#fff,#c084fc,#f472b6);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.search{
+  flex:1;
+  max-width:440px;
+  position:relative;
+}
+
+.search input{
+  width:100%;
+  height:42px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  outline:none;
+  color:#fff;
+  background:rgba(255,255,255,.055);
+  padding:0 16px 0 43px;
+}
+
+.search input:focus{
+  border-color:rgba(168,85,247,.6);
+  box-shadow:0 0 25px rgba(168,85,247,.12);
+}
+
+.search-icon{
+  position:absolute;
+  left:15px;
+  top:9px;
+  color:#aaa;
+  font-size:20px;
+}
+
+.nav{
+  margin-left:auto;
+  display:flex;
+  gap:22px;
+}
+
+.nav a{
+  color:#aaa;
+  text-decoration:none;
+  font-size:14px;
+  transition:.25s;
+}
+
+.nav a:hover,
+.nav a.active{
+  color:#fff;
+}
+
+.profile{
+  width:39px;
+  height:39px;
+  border-radius:50%;
+  color:#fff;
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+}
+
+/* MAIN */
+
+main{
+  width:min(1400px,90%);
+  margin:auto;
+}
+
+/* HERO */
+
+.artist-hero{
+  margin-top:30px;
+  min-height:320px;
+  padding:50px;
+  border-radius:30px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  background:
+    linear-gradient(100deg,rgba(5,5,9,.98),rgba(5,5,9,.7)),
+    linear-gradient(135deg,#32105c,#27102d);
+  border:1px solid var(--line);
+}
+
+.artist-hero::before{
+  content:"";
+  position:absolute;
+  width:430px;
+  height:430px;
+  right:7%;
+  top:50%;
+  transform:translateY(-50%);
+  border-radius:50%;
+  background:conic-gradient(
+    #a855f7,
+    #ec4899,
+    #6366f1,
+    #a855f7
+  );
+  opacity:.55;
+  filter:blur(1px);
+  animation:spin 14s linear infinite;
+}
+
+.artist-hero::after{
+  content:"♫";
+  position:absolute;
+  right:14%;
+  top:50%;
+  transform:translateY(-50%);
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:110px;
+  background:rgba(5,5,10,.78);
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 0 70px rgba(168,85,247,.3);
+}
+
+@keyframes spin{
+  to{
+    transform:translateY(-50%) rotate(360deg);
+  }
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:620px;
+}
+
+.badge{
+  display:inline-flex;
+  padding:8px 13px;
+  border-radius:30px;
+  background:rgba(255,255,255,.07);
+  border:1px solid var(--line);
+  color:#d8b4fe;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+
+.artist-hero h1{
+  font-size:clamp(44px,7vw,72px);
+  letter-spacing:-4px;
+  line-height:.95;
+  margin-bottom:18px;
+}
+
+.artist-hero h1 span{
+  background:linear-gradient(90deg,#fff,#c084fc,#f472b6);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.artist-hero p{
+  color:#aaaab8;
+  max-width:540px;
+  line-height:1.7;
+}
+
+/* SECTION */
+
+section{
+  margin-top:58px;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:22px;
+}
+
+.section-head h2{
+  font-size:24px;
+  letter-spacing:-.7px;
+}
+
+.section-head span{
+  color:#777783;
+  font-size:12px;
+}
+
+/* FILTERS */
+
+.filters{
+  display:flex;
+  gap:9px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  padding-bottom:5px;
+}
+
+.filters::-webkit-scrollbar{
+  display:none;
+}
+
+.filter{
+  flex-shrink:0;
+  padding:10px 16px;
+  border-radius:30px;
+  color:#aaa;
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--line);
+  transition:.25s;
+}
+
+.filter:hover,
+.filter.active{
+  color:#fff;
+  background:linear-gradient(100deg,#9333ea,#ec4899);
+  border-color:transparent;
+}
+
+/* ARTIST GRID */
+
+.artist-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:18px;
+}
+
+.artist-card{
+  position:relative;
+  padding:17px;
+  border-radius:22px;
+  text-align:center;
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--line);
+  transition:.35s;
+  cursor:pointer;
+}
+
+.artist-card:hover{
+  transform:translateY(-8px);
+  background:rgba(255,255,255,.065);
+  border-color:rgba(168,85,247,.38);
+  box-shadow:0 20px 45px rgba(0,0,0,.3);
+}
+
+.artist-photo{
+  width:145px;
+  height:145px;
+  max-width:100%;
+  aspect-ratio:1;
+  margin:auto;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:42px;
+  font-weight:900;
+  border:3px solid rgba(255,255,255,.08);
+  transition:.35s;
+  background:
+    radial-gradient(circle at 30% 20%,#fff5,transparent 18%),
+    linear-gradient(135deg,#4c1d95,#db2777);
+}
+
+.artist-card:hover .artist-photo{
+  transform:scale(1.06);
+  box-shadow:0 0 35px rgba(168,85,247,.3);
+  border-color:rgba(192,132,252,.6);
+}
+
+.artist-photo.thugkeed{
+  background:
+    radial-gradient(circle at 28% 18%,#fff5,transparent 17%),
+    linear-gradient(145deg,#050505,#5b0011 55%,#ef4444);
+  text-shadow:0 0 25px rgba(236,72,153,.8);
+}
+
+.artist-card h3{
+  margin-top:15px;
+  font-size:16px;
+}
+
+.artist-card p{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:5px;
+}
+
+.artist-button{
+  width:100%;
+  height:37px;
+  margin-top:14px;
+  border-radius:11px;
+  color:#fff;
+  background:rgba(255,255,255,.07);
+  border:1px solid var(--line);
+  font-size:12px;
+  font-weight:700;
+  transition:.25s;
+}
+
+.artist-button:hover{
+  background:linear-gradient(100deg,#9333ea,#ec4899);
+  border-color:transparent;
+}
+
+/* FEATURED ARTIST */
+
+.featured{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:18px;
+}
+
+.featured-main{
+  min-height:270px;
+  border-radius:24px;
+  padding:30px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  gap:25px;
+  background:
+    linear-gradient(120deg,rgba(7,7,10,.96),rgba(45,8,45,.75)),
+    linear-gradient(135deg,#4c1d95,#db2777);
+  border:1px solid var(--line);
+}
+
+.featured-main::after{
+  content:"THUGKEED";
+  position:absolute;
+  right:-30px;
+  bottom:-20px;
+  font-size:75px;
+  font-weight:900;
+  letter-spacing:-5px;
+  color:rgba(255,255,255,.035);
+  transform:rotate(-8deg);
+}
+
+.big-avatar{
+  width:170px;
+  height:170px;
+  flex-shrink:0;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:48px;
+  font-weight:900;
+  background:
+    radial-gradient(circle at 28% 18%,#fff5,transparent 17%),
+    linear-gradient(145deg,#050505,#680014,#ef4444);
+  border:3px solid rgba(255,255,255,.1);
+  box-shadow:0 0 45px rgba(236,72,153,.25);
+  z-index:1;
+}
+
+.featured-info{
+  position:relative;
+  z-index:2;
+}
+
+.featured-info small{
+  color:#d8b4fe;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-weight:800;
+  font-size:10px;
+}
+
+.featured-info h2{
+  font-size:38px;
+  margin:7px 0;
+}
+
+.featured-info p{
+  color:#aaa;
+  line-height:1.6;
+  font-size:13px;
+  max-width:430px;
+}
+
+.spotify{
+  margin-top:18px;
+  padding:11px 17px;
+  border-radius:11px;
+  color:white;
+  background:linear-gradient(100deg,#9333ea,#ec4899);
+  font-weight:750;
+}
+
+.stats{
+  border-radius:24px;
+  padding:30px;
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--line);
+  display:grid;
+  align-content:center;
+  gap:20px;
+}
+
+.stat{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--line);
+}
+
+.stat:last-child{
+  border-bottom:0;
+  padding-bottom:0;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.stat strong{
+  font-size:18px;
+}
+
+/* MOBILE NAV */
+
+.mobile-nav{
+  display:none;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+  .artist-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .featured{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:760px){
+
+  header{
+    height:64px;
+    padding:0 18px;
+    gap:12px;
+  }
+
+  .logo{
+    font-size:21px;
+  }
+
+  .nav,
+  .profile{
+    display:none;
+  }
+
+  .search{
+    max-width:none;
+  }
+
+  main{
+    width:92%;
+  }
+
+  .artist-hero{
+    min-height:420px;
+    padding:30px 24px;
+    align-items:flex-end;
+  }
+
+  .artist-hero::before{
+    width:300px;
+    height:300px;
+    right:50%;
+    top:32%;
+    transform:translate(50%,-50%);
+  }
+
+  .artist-hero::after{
+    width:210px;
+    height:210px;
+    right:50%;
+    top:31%;
+    transform:translate(50%,-50%);
+    font-size:75px;
+  }
+
+  .artist-hero h1{
+    font-size:48px;
+  }
+
+  .artist-hero p{
+    font-size:13px;
+  }
+
+  .artist-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+
+  .artist-card{
+    padding:13px 9px;
+  }
+
+  .artist-photo{
+    width:115px;
+    height:115px;
+    font-size:32px;
+  }
+
+  .featured-main{
+    padding:24px;
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .big-avatar{
+    width:145px;
+    height:145px;
+  }
+
+  .featured-info h2{
+    font-size:32px;
+  }
+
+  .mobile-nav{
+    position:fixed;
+    z-index:190;
+    display:flex;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:58px;
+    align-items:center;
+    justify-content:space-around;
+    background:rgba(10,10,14,.94);
+    backdrop-filter:blur(20px);
+    border-top:1px solid var(--line);
+  }
+
+  .mobile-nav a{
+    color:#777783;
+    text-decoration:none;
+    font-size:10px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+  }
+
+  .mobile-nav a.active{
+    color:#c084fc;
+  }
+
+  .mobile-nav b{
+    font-size:18px;
+  }
+}
+
+@media(max-width:380px){
+  .artist-grid{
+    gap:9px;
+  }
+
+  .artist-photo{
+    width:100px;
+    height:100px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="orb one"></div>
+<div class="orb two"></div>
+
+<header>
+
+<div class="logo">
+<span>PLAYORA</span>
+</div>
+
+<div class="search">
+<span class="search-icon">⌕</span>
+<input
+id="artistSearch"
+type="text"
+placeholder="Search artists..."
+oninput="searchArtists()">
+</div>
+
+<nav class="nav">
+<a href="index.html">Home</a>
+<a href="trending.html">Trending</a>
+<a href="artists.html" class="active">Artists</a>
+<a href="albums.html">Albums</a>
+</nav>
+
+<button class="profile" onclick="loginMessage()">U</button>
+
+</header>
+
+<main>
+
+<!-- HERO -->
+
+<section class="artist-hero">
+
+<div class="hero-content">
+
+<div class="badge">
+✦ Artist Discovery
+</div>
+
+<h1>
+Find your<br>
+<span>next sound.</span>
+</h1>
+
+<p>
+Explore rising artists, discover different sounds and
+find music that deserves a place in your playlist.
+</p>
+
+</div>
+
+</section>
+
+<!-- FILTERS -->
+
+<section>
+
+<div class="section-head">
+<h2>Browse artists</h2>
+<span id="artistCount">5 artists</span>
+</div>
+
+<div class="filters">
+
+<button class="filter active" onclick="filterArtists('all',this)">
+All
+</button>
+
+<button class="filter" onclick="filterArtists('hiphop',this)">
+Hip-Hop
+</button>
+
+<button class="filter" onclick="filterArtists('trap',this)">
+Trap
+</button>
+
+<button class="filter" onclick="filterArtists('rnb',this)">
+R&B
+</button>
+
+<button class="filter" onclick="filterArtists('afro',this)">
+Afro
+</button>
+
+</div>
+
+</section>
+
+<!-- ARTISTS -->
+
+<section>
+
+<div class="artist-grid" id="artistGrid">
+
+<div class="artist-card"
+data-name="thugkeed"
+data-genre="hiphop trap"
+onclick="openSpotify()">
+
+<div class="artist-photo thugkeed">
+TK
+</div>
+
+<h3>Thugkeed</h3>
+<p>South Africa • Hip-Hop</p>
+
+<button class="artist-button" onclick="event.stopPropagation();openSpotify()">
+♫ Spotify
+</button>
+
+</div>
+
+<div class="artist-card"
+data-name="nova"
+data-genre="hiphop">
+
+<div class="artist-photo">
+N
+</div>
+
+<h3>Nova</h3>
+<p>Hip-Hop</p>
+
+<button class="artist-button">
+View Artist
+</button>
+
+</div>
+
+<div class="artist-card"
+data-name="aria"
+data-genre="rnb">
+
+<div class="artist-photo">
+A
+</div>
+
+<h3>Aria</h3>
+<p>R&B</p>
+
+<button class="artist-button">
+View Artist
+</button>
+
+</div>
+
+<div class="artist-card"
+data-name="kai"
+data-genre="trap">
+
+<div class="artist-photo">
+K
+</div>
+
+<h3>Kai</h3>
+<p>Trap</p>
+
+<button class="artist-button">
+View Artist
+</button>
+
+</div>
+
+<div class="artist-card"
+data-name="luna"
+data-genre="afro">
+
+<div class="artist-photo">
+L
+</div>
+
+<h3>Luna</h3>
+<p>Afro</p>
+
+<button class="artist-button">
+View Artist
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FEATURED ARTIST -->
+
+<section>
+
+<div class="section-head">
+<h2>Featured artist</h2>
+<span>PLAYORA spotlight</span>
+</div>
+
+<div class="featured">
+
+<div class="featured-main">
+
+<div class="big-avatar">
+TK
+</div>
+
+<div class="featured-info">
+
+<small>Featured Artist</small>
+
+<h2>Thugkeed</h2>
+
+<p>
+South African independent hip-hop artist bringing
+trap energy, raw storytelling and a new-school sound.
+</p>
+
+<button class="spotify" onclick="openSpotify()">
+♫ Open Spotify Profile
+</button>
+
+</div>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<span>Genre</span>
+<strong>Hip-Hop</strong>
+</div>
+
+<div class="stat">
+<span>Origin</span>
+<strong>South Africa</strong>
+</div>
+
+<div class="stat">
+<span>Platform</span>
+<strong>Spotify</strong>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<nav class="mobile-nav">
+
+<a href="index.html">
+<b>⌂</b>
+Home
+</a>
+
+<a href="trending.html">
+<b>♫</b>
+Trending
+</a>
+
+<a href="artists.html" class="active">
+<b>♙</b>
+Artists
+</a>
+
+<a href="albums.html">
+<b>▣</b>
+Albums
+</a>
+
+</nav>
+
+<script>
+
+const SPOTIFY_URL =
+"https://open.spotify.com/artist/0pLKp8JWae8rUyVF2u1e1r?si=4AcRpX0AT2S_wu7ugjr7TQ&utm_source=copy-link";
+
+function openSpotify(){
+window.open(SPOTIFY_URL,"_blank");
+}
+
+function loginMessage(){
+alert("PLAYORA accounts are coming soon.");
+}
+
+function searchArtists(){
+
+const query=
+document.getElementById("artistSearch")
+.value
+.toLowerCase()
+.trim();
+
+const cards=
+document.querySelectorAll(".artist-card");
+
+let visible=0;
+
+cards.forEach(card=>{
+
+const name=card.dataset.name.toLowerCase();
+
+if(!query || name.includes(query)){
+card.style.display="";
+visible++;
+}else{
+card.style.display="none";
+}
+
+});
+
+document.getElementById("artistCount").textContent=
+visible+" artist"+(visible===1?"":"s");
+
+}
+
+function filterArtists(genre,button){
+
+document
+.querySelectorAll(".filter")
+.forEach(btn=>btn.classList.remove("active"));
+
+button.classList.add("active");
+
+const cards=
+document.querySelectorAll(".artist-card");
+
+let visible=0;
+
+cards.forEach(card=>{
+
+const genres=card.dataset.genre || "";
+
+if(
+genre==="all" ||
+genres.includes(genre)
+){
+card.style.display="";
+visible++;
+}else{
+card.style.display="none";
+}
+
+});
+
+document.getElementById("artistCount").textContent=
+visible+" artist"+(visible===1?"":"s");
+
+}
+
+</script>
+
+</body>
+</html>

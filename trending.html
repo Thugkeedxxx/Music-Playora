@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#08080c">
+<title>PLAYORA — Trending</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+--bg:#08080c;
+--text:#fff;
+--muted:#90909e;
+--line:rgba(255,255,255,.08);
+--purple:#a855f7;
+--pink:#ec4899;
+--blue:#6366f1;
+}
+
+body{
+font-family:Inter,Arial,sans-serif;
+background:
+radial-gradient(circle at 85% 5%,rgba(168,85,247,.15),transparent 25%),
+radial-gradient(circle at 10% 45%,rgba(236,72,153,.08),transparent 25%),
+var(--bg);
+color:white;
+min-height:100vh;
+padding-bottom:90px;
+overflow-x:hidden;
+}
+
+button,input{font:inherit}
+button{border:0;cursor:pointer}
+
+.orb{
+position:fixed;
+width:260px;
+height:260px;
+border-radius:50%;
+filter:blur(100px);
+opacity:.1;
+pointer-events:none;
+z-index:-1;
+animation:float 10s ease-in-out infinite;
+}
+
+.orb.one{
+background:#a855f7;
+top:10%;
+right:-120px;
+}
+
+.orb.two{
+background:#ec4899;
+bottom:15%;
+left:-130px;
+animation-delay:-4s;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0) scale(1)}
+50%{transform:translateY(-35px) scale(1.1)}
+}
+
+/* HEADER */
+
+header{
+height:72px;
+position:sticky;
+top:0;
+z-index:100;
+display:flex;
+align-items:center;
+gap:25px;
+padding:0 5%;
+background:rgba(8,8,12,.8);
+backdrop-filter:blur(22px);
+border-bottom:1px solid var(--line);
+}
+
+.logo{
+font-size:25px;
+font-weight:900;
+letter-spacing:-1.5px;
+white-space:nowrap;
+}
+
+.logo span{
+background:linear-gradient(90deg,#fff,#c084fc,#f472b6);
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+}
+
+.search{
+flex:1;
+max-width:440px;
+position:relative;
+}
+
+.search input{
+width:100%;
+height:42px;
+border-radius:14px;
+border:1px solid var(--line);
+outline:none;
+color:white;
+background:rgba(255,255,255,.055);
+padding:0 16px 0 43px;
+}
+
+.search input:focus{
+border-color:rgba(168,85,247,.6);
+box-shadow:0 0 25px rgba(168,85,247,.12);
+}
+
+.search-icon{
+position:absolute;
+left:15px;
+top:9px;
+font-size:20px;
+color:#aaa;
+}
+
+.nav{
+margin-left:auto;
+display:flex;
+gap:22px;
+}
+
+.nav a{
+color:#aaa;
+text-decoration:none;
+font-size:14px;
+transition:.25s;
+}
+
+.nav a:hover,
+.nav a.active{
+color:#fff;
+}
+
+.profile{
+width:39px;
+height:39px;
+border-radius:50%;
+color:white;
+background:linear-gradient(135deg,var(--purple),var(--pink));
+}
+
+/* MAIN */
+
+main{
+width:min(1400px,90%);
+margin:auto;
+}
+
+/* HERO */
+
+.hero{
+margin-top:30px;
+min-height:330px;
+padding:50px;
+border-radius:30px;
+position:relative;
+overflow:hidden;
+display:flex;
+align-items:center;
+background:
+linear-gradient(100deg,rgba(5,5,9,.98),rgba(5,5,9,.7)),
+linear-gradient(135deg,#351064,#25102d);
+border:1px solid var(--line);
+}
+
+.hero::before{
+content:"01";
+position:absolute;
+right:5%;
+bottom:-55px;
+font-size:300px;
+font-weight:900;
+line-height:1;
+color:rgba(255,255,255,.035);
+font-style:italic;
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+}
+
+.badge{
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:8px 13px;
+border-radius:30px;
+background:rgba(255,255,255,.07);
+border:1px solid var(--line);
+color:#d8b4fe;
+font-size:11px;
+font-weight:800;
+letter-spacing:1px;
+text-transform:uppercase;
+margin-bottom:18px;
+}
+
+.live-dot{
+width:7px;
+height:7px;
+border-radius:50%;
+background:#ec4899;
+box-shadow:0 0 15px #ec4899;
+animation:pulse 1.3s infinite;
+}
+
+@keyframes pulse{
+50%{transform:scale(1.7);opacity:.45}
+}
+
+.hero h1{
+font-size:clamp(46px,7vw,76px);
+line-height:.94;
+letter-spacing:-4px;
+margin-bottom:18px;
+}
+
+.hero h1 span{
+background:linear-gradient(90deg,#fff,#c084fc,#f472b6);
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+}
+
+.hero p{
+color:#aaaab8;
+max-width:560px;
+line-height:1.7;
+}
+
+/* CONTROLS */
+
+section{
+margin-top:58px;
+}
+
+.section-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:20px;
+}
+
+.section-head h2{
+font-size:24px;
+letter-spacing:-.7px;
+}
+
+.section-head span{
+font-size:12px;
+color:#777783;
+}
+
+.filters{
+display:flex;
+gap:9px;
+overflow-x:auto;
+scrollbar-width:none;
+padding-bottom:5px;
+}
+
+.filters::-webkit-scrollbar{
+display:none;
+}
+
+.filter{
+flex-shrink:0;
+padding:10px 17px;
+border-radius:30px;
+color:#aaa;
+background:rgba(255,255,255,.045);
+border:1px solid var(--line);
+transition:.25s;
+}
+
+.filter:hover,
+.filter.active{
+color:#fff;
+background:linear-gradient(100deg,#9333ea,#ec4899);
+border-color:transparent;
+}
+
+/* CHART */
+
+.chart{
+display:grid;
+gap:10px;
+}
+
+.track{
+display:flex;
+align-items:center;
+gap:15px;
+padding:12px;
+border-radius:18px;
+border:1px solid transparent;
+background:rgba(255,255,255,.025);
+transition:.3s;
+}
+
+.track:hover{
+background:rgba(255,255,255,.065);
+border-color:var(--line);
+transform:translateX(4px);
+}
+
+.rank{
+width:38px;
+text-align:center;
+font-size:14px;
+font-weight:800;
+color:#6f6f7d;
+}
+
+.rank.top{
+font-size:19px;
+color:#c084fc;
+}
+
+.cover{
+width:62px;
+height:62px;
+border-radius:14px;
+flex-shrink:0;
+display:grid;
+place-items:center;
+font-size:21px;
+font-weight:900;
+position:relative;
+overflow:hidden;
+background:linear-gradient(135deg,#4c1d95,#db2777);
+}
+
+.cover.thug{
+background:
+radial-gradient(circle at 25% 18%,#fff4,transparent 17%),
+linear-gradient(145deg,#050505,#650012,#ef4444);
+text-shadow:0 0 20px #ec4899;
+}
+
+.info{
+flex:1;
+min-width:0;
+}
+
+.title{
+font-size:14px;
+font-weight:800;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+.artist{
+font-size:12px;
+color:var(--muted);
+margin-top:5px;
+}
+
+.genre{
+font-size:11px;
+color:#777783;
+width:100px;
+}
+
+.duration{
+font-size:11px;
+color:#777783;
+width:45px;
+}
+
+.play{
+width:38px;
+height:38px;
+border-radius:50%;
+color:white;
+background:rgba(255,255,255,.07);
+transition:.25s;
+}
+
+.play:hover{
+background:linear-gradient(135deg,#9333ea,#ec4899);
+transform:scale(1.08);
+}
+
+/* TOP CARDS */
+
+.top-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+}
+
+.top-card{
+position:relative;
+min-height:245px;
+padding:20px;
+border-radius:22px;
+overflow:hidden;
+background:rgba(255,255,255,.035);
+border:1px solid var(--line);
+transition:.35s;
+}
+
+.top-card:hover{
+transform:translateY(-7px);
+border-color:rgba(168,85,247,.35);
+box-shadow:0 20px 45px rgba(0,0,0,.3);
+}
+
+.top-number{
+position:absolute;
+right:18px;
+top:8px;
+font-size:75px;
+font-weight:900;
+font-style:italic;
+color:rgba(255,255,255,.04);
+}
+
+.top-cover{
+width:115px;
+height:115px;
+border-radius:18px;
+display:grid;
+place-items:center;
+font-size:34px;
+font-weight:900;
+margin-bottom:18px;
+background:linear-gradient(135deg,#4c1d95,#db2777);
+}
+
+.top-cover.thug{
+background:
+linear-gradient(145deg,#080808,#680014,#ef4444);
+}
+
+.top-card h3{
+font-size:17px;
+}
+
+.top-card p{
+font-size:12px;
+color:var(--muted);
+margin-top:5px;
+}
+
+.top-card button{
+margin-top:15px;
+padding:9px 14px;
+border-radius:10px;
+color:white;
+background:rgba(255,255,255,.07);
+font-size:11px;
+}
+
+/* FOOTER */
+
+footer{
+width:min(1400px,90%);
+margin:70px auto 20px;
+padding-top:25px;
+border-top:1px solid var(--line);
+color:#666672;
+font-size:11px;
+text-align:center;
+}
+
+/* MOBILE */
+
+.mobile-nav{
+display:none;
+}
+
+@media(max-width:900px){
+.top-grid{
+grid-template-columns:1fr 1fr;
+}
+
+.genre{
+display:none;
+}
+}
+
+@media(max-width:760px){
+
+header{
+height:64px;
+padding:0 18px;
+gap:12px;
+}
+
+.logo{
+font-size:21px;
+}
+
+.nav,
+.profile{
+display:none;
+}
+
+.search{
+max-width:none;
+}
+
+main{
+width:92%;
+}
+
+.hero{
+min-height:390px;
+padding:30px 24px;
+align-items:flex-end;
+}
+
+.hero h1{
+font-size:48px;
+}
+
+.hero p{
+font-size:13px;
+}
+
+.track{
+gap:9px;
+padding:10px 7px;
+}
+
+.rank{
+width:25px;
+font-size:11px;
+}
+
+.cover{
+width:52px;
+height:52px;
+font-size:17px;
+border-radius:11px;
+}
+
+.title{
+font-size:13px;
+}
+
+.duration{
+display:none;
+}
+
+.top-grid{
+grid-template-columns:1fr;
+}
+
+.top-card{
+min-height:210px;
+}
+
+.mobile-nav{
+position:fixed;
+z-index:190;
+display:flex;
+bottom:0;
+left:0;
+width:100%;
+height:58px;
+align-items:center;
+justify-content:space-around;
+background:rgba(10,10,14,.94);
+backdrop-filter:blur(20px);
+border-top:1px solid var(--line);
+}
+
+.mobile-nav a{
+color:#777783;
+text-decoration:none;
+font-size:10px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:4px;
+}
+
+.mobile-nav a.active{
+color:#c084fc;
+}
+
+.mobile-nav b{
+font-size:18px;
+}
+
+footer{
+margin-bottom:20px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="orb one"></div>
+<div class="orb two"></div>
+
+<header>
+
+<div class="logo">
+<span>PLAYORA</span>
+</div>
+
+<div class="search">
+<span class="search-icon">⌕</span>
+<input
+id="searchInput"
+type="text"
+placeholder="Search trending music..."
+oninput="searchTracks()">
+</div>
+
+<nav class="nav">
+<a href="index.html">Home</a>
+<a href="trending.html" class="active">Trending</a>
+<a href="artists.html">Artists</a>
+<a href="albums.html">Albums</a>
+</nav>
+
+<button class="profile" onclick="accountMessage()">U</button>
+
+</header>
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="badge">
+<span class="live-dot"></span>
+PLAYORA CHARTS
+</div>
+
+<h1>
+What's<br>
+<span>moving now.</span>
+</h1>
+
+<p>
+Discover the tracks and artists getting attention across
+the PLAYORA music universe.
+</p>
+
+</div>
+
+</section>
+
+<!-- FILTERS -->
+
+<section>
+
+<div class="section-head">
+<h2>Trending charts</h2>
+<span id="count">8 tracks</span>
+</div>
+
+<div class="filters">
+
+<button class="filter active"
+onclick="filterGenre('all',this)">
+All
+</button>
+
+<button class="filter"
+onclick="filterGenre('hiphop',this)">
+Hip-Hop
+</button>
+
+<button class="filter"
+onclick="filterGenre('trap',this)">
+Trap
+</button>
+
+<button class="filter"
+onclick="filterGenre('rnb',this)">
+R&B
+</button>
+
+<button class="filter"
+onclick="filterGenre('afro',this)">
+Afro
+</button>
+
+</div>
+
+</section>
+
+<!-- CHART -->
+
+<section>
+
+<div class="chart" id="chart">
+
+<div class="track"
+data-search="thugkeed since from the trench"
+data-genre="hiphop trap">
+
+<div class="rank top">01</div>
+
+<div class="cover thug">
+TK
+</div>
+
+<div class="info">
+<div class="title">Since From The Trench</div>
+<div class="artist">Thugkeed</div>
+</div>
+
+<div class="genre">Hip-Hop</div>
+<div class="duration">3:18</div>
+
+<button class="play"
+onclick="openSpotify()">
+▶
+</button>
+
+</div>
+
+
+<div class="track"
+data-search="midnight drive nova"
+data-genre="hiphop">
+
+<div class="rank top">02</div>
+
+<div class="cover">N</div>
+
+<div class="info">
+<div class="title">Midnight Drive</div>
+<div class="artist">Nova</div>
+</div>
+
+<div class="genre">Hip-Hop</div>
+<div class="duration">3:24</div>
+
+<button class="play"
+onclick="playTrack('Midnight Drive','Nova')">
+▶
+</button>
+
+</div>
+
+
+<div class="track"
+data-search="afterglow aria"
+data-genre="rnb">
+
+<div class="rank top">03</div>
+
+<div class="cover"
+style="background:linear-gradient(135deg,#172554,#7e22ce)">
+A
+</div>
+
+<div class="info">
+<div class="title">Afterglow</div>
+<div class="artist">Aria</div>
+</div>
+
+<div class="genre">R&B</div>
+<div class="duration">2:58</div>
+
+<button class="play"
+onclick="playTrack('Afterglow','Aria')">
+▶
+</button>
+
+</div>
+
+
+<div class="track"
+data-search="red lights kai"
+data-genre="trap">
+
+<div class="rank">04</div>
+
+<div class="cover"
+style="background:linear-gradient(135deg,#3f0d2e,#f43f5e)">
+K
+</div>
+
+<div class="info">
+<div class="title">Red Lights</div>
+<div class="artist">Kai</div>
+</div>
+
+<div class="genre">Trap</div>
+<div class="duration">3:11</div>
+
+<button class="play"
+onclick="playTrack('Red Lights','Kai')">
+▶
+</button>
+
+</div>
+
+
+<div class="track"
+data-search="blue hour luna"
+data-genre="afro">
+
+<div class="rank">05</div>
+
+<div class="cover"
+style="background:linear-gradient(135deg,#0f172a,#2563eb)">
+L
+</div>
+
+<div class="info">
+<div class="title">Blue Hour</div>
+<div class="artist">Luna</div>
+</div>
+
+<div class="genre">Afro</div>
+<div class="duration">3:06</div>
+
+<button class="play"
+onclick="playTrack('Blue Hour','Luna')">
+▶
+</button>
+
+</div>
+
+
+<div class="track"
+data-search="motion wave thugkeed"
+data-genre="hiphop trap">
+
+<div class="rank">06</div>
+
+<div class="cover thug">
+TK
+</div>
+
+<div class="info">
+<div class="title">Motion Wave</div>
+<div class="artist">Thugkeed</div>
+</div>
+
+<div class="genre">Trap</div>
+<div class="duration">2:51</div>
+
+<button class="play"
+onclick="openSpotify()">
+▶
+</button>
+
+</div>
+
+
+<div class="track"
+data-search="night drive nova"
+data-genre="hiphop">
+
+<div class="rank">07</div>
+
+<div class="cover">N</div>
+
+<div class="info">
+<div class="title">Night Drive</div>
+<div class="artist">Nova</div>
+</div>
+
+<div class="genre">Hip-Hop</div>
+<div class="duration">3:40</div>
+
+<button class="play"
+onclick="playTrack('Night Drive','Nova')">
+▶
+</button>
+
+</div>
+
+
+<div class="track"
+data-search="after hours aria"
+data-genre="rnb">
+
+<div class="rank">08</div>
+
+<div class="cover"
+style="background:linear-gradient(135deg,#831843,#f43f5e)">
+A
+</div>
+
+<div class="info">
+<div class="title">After Hours</div>
+<div class="artist">Aria</div>
+</div>
+
+<div class="genre">R&B</div>
+<div class="duration">3:15</div>
+
+<button class="play"
+onclick="playTrack('After Hours','Aria')">
+▶
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TOP SPOTLIGHT -->
+
+<section>
+
+<div class="section-head">
+<h2>Chart spotlight</h2>
+<span>Today's picks</span>
+</div>
+
+<div class="top-grid">
+
+<div class="top-card">
+
+<div class="top-number">01</div>
+
+<div class="top-cover thug">
+TK
+</div>
+
+<h3>Thugkeed</h3>
+<p>South Africa • Hip-Hop / Trap</p>
+
+<button onclick="openSpotify()">
+♫ Open Spotify
+</button>
+
+</div>
+
+
+<div class="top-card">
+
+<div class="top-number">02</div>
+
+<div class="top-cover">N</div>
+
+<h3>Nova</h3>
+<p>Hip-Hop</p>
+
+<button onclick="playTrack('Midnight Drive','Nova')">
+▶ Play preview
+</button>
+
+</div>
+
+
+<div class="top-card">
+
+<div class="top-number">03</div>
+
+<div class="top-cover"
+style="background:linear-gradient(135deg,#172554,#7e22ce)">
+A
+</div>
+
+<h3>Aria</h3>
+<p>R&B</p>
+
+<button onclick="playTrack('Afterglow','Aria')">
+▶ Play preview
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+© 2026 PLAYORA — Music without limits.
+</footer>
+
+<!-- MOBILE NAV -->
+
+<nav class="mobile-nav">
+
+<a href="index.html">
+<b>⌂</b>
+Home
+</a>
+
+<a href="trending.html" class="active">
+<b>♫</b>
+Trending
+</a>
+
+<a href="artists.html">
+<b>♙</b>
+Artists
+</a>
+
+<a href="albums.html">
+<b>▣</b>
+Albums
+</a>
+
+</nav>
+
+<script>
+
+const SPOTIFY_URL =
+"https://open.spotify.com/artist/0pLKp8JWae8rUyVF2u1e1r?si=4AcRpX0AT2S_wu7ugjr7TQ&utm_source=copy-link";
+
+function openSpotify(){
+window.open(SPOTIFY_URL,"_blank");
+}
+
+function accountMessage(){
+alert("PLAYORA accounts are coming soon.");
+}
+
+function playTrack(title,artist){
+
+alert(
+"▶ "+title+
+"\n\nArtist: "+artist+
+"\n\nStreaming player connection coming next."
+);
+
+}
+
+function searchTracks(){
+
+const query=
+document.getElementById("searchInput")
+.value
+.toLowerCase()
+.trim();
+
+const tracks=
+document.querySelectorAll(".track");
+
+let visible=0;
+
+tracks.forEach(track=>{
+
+const text=
+track.dataset.search.toLowerCase();
+
+if(!query || text.includes(query)){
+track.style.display="flex";
+visible++;
+}else{
+track.style.display="none";
+}
+
+});
+
+document.getElementById("count").textContent=
+visible+" track"+(visible===1?"":"s");
+
+}
+
+function filterGenre(genre,button){
+
+document
+.querySelectorAll(".filter")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+button.classList.add("active");
+
+const tracks=
+document.querySelectorAll(".track");
+
+let visible=0;
+
+tracks.forEach(track=>{
+
+const genres=
+track.dataset.genre || "";
+
+if(
+genre==="all" ||
+genres.includes(genre)
+){
+track.style.display="flex";
+visible++;
+}else{
+track.style.display="none";
+}
+
+});
+
+document.getElementById("count").textContent=
+visible+" track"+(visible===1?"":"s");
+
+}
+
+</script>
+
+</body>
+</html>
